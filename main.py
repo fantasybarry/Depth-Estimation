@@ -12,4 +12,9 @@ left_image = cv.imread(left_imgPath, cv.IMREAD_GRAYSCALE)
 right_image = cv.imread(right_imgPath, cv.IMREAD_GRAYSCALE)
 
 display = tri.Triangulation()
-print(display.img_rectification(left_image, right_image))
+corners = display.img_rectification(left_image, right_image)
+left_corners, right_corners = corners
+fundamental_matrix, inliers1, inliers2 = display.fundamental_matrix_calculation(left_corners, right_corners)
+print(fundamental_matrix)
+print(inliers1)
+print(inliers2)

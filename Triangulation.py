@@ -52,6 +52,7 @@ class Triangulation:
                                         criteria=(cv.TermCriteria_EPS + cv.TermCriteria_MAX_ITER, 100, 0.001))
         # Optical Flow function(if the input tested file is video or consecutive frame)
         # def optical_flow():
+
         return left_corners, right_corners
 
     # Calibrating the camera
@@ -59,8 +60,19 @@ class Triangulation:
 
     # Find the fundamental matrix which encodes all aspects of the scene used to compute a rectification matrix
     def fundamental_matrix_calculation(self, left_corner_points, right_corner_points):
-        return
-        
+        F, mask = cv.findFundamentalMat(left_corner_points, right_corner_points, method=cv.FM_RANSAC,
+                                     ransacReprojThreshold=3, confidence=0.99)
+        inliers1 = left_corner_points[mask.ravel() == 1]
+        inliers2 = right_corner_points[mask.ravel() == 1]
+        return F, inliers1, inliers2
+    
+    ############## Need to Use epipolar constraint equations to determine if the resulted fundamental matrix is correct ###########
+    # Epipolar constraint equations to determine the accuracy of fundamental matrix
+    #def epipolar_constraint()
+    
+
+
+
         
 
 
@@ -72,7 +84,7 @@ class Triangulation:
         # Iterate over each y(rows) of the input image
         #for y in range()
     
-    # Calculate the depthaaaaaa
+    # Calculate the depth
     # def depth_calculation():
     
 
