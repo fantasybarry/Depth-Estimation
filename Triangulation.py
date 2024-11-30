@@ -59,7 +59,7 @@ class Triangulation:
 
     # Find the fundamental matrix which encodes all aspects of the scene used to compute a rectification matrix
     def fundamental_matrix_calculation(self, left_corner_points, right_corner_points):
-        
+        return
         
         
 
